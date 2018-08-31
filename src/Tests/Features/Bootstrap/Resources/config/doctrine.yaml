@@ -1,0 +1,6 @@
+---
+dbname: behat
+user: root
+password: password
+host: mysql
+driver: pdo_mysql

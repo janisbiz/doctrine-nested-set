@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  mysql:
+    build:
+      context: .docker/mysql
+      args:
+        password: $DOCKER_MYSQL_PASSWORD
+    environment:
+      MYSQL_ROOT_PASSWORD: $DOCKER_MYSQL_PASSWORD
+    ports:
+      - $DOCKER_MYSQL_LOCAL_PORT:3306
+    networks:
+      - janisbiz_doctrine-nested-set
+  php:
+    build:
+      context: .docker/php
+      args:
+        LOCAL_USER_ID: $DOCKER_LOCAL_USER_ID
+        LOCAL_GROUP_ID: $DOCKER_LOCAL_USER_GROUP
+    user: $DOCKER_LOCAL_USER_ID:$DOCKER_LOCAL_USER_GROUP
+    volumes:
+      - ./:/var/www
+    tty: true
+    stdin_open: true
+    networks:
+      - janisbiz_doctrine-nested-set
+networks:
+  janisbiz_doctrine-nested-set:
+    driver: bridge
