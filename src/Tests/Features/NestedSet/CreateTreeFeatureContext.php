@@ -12,11 +12,12 @@ class CreateTreeFeatureContext extends FeatureContext
     private $rootNodes;
 
     /**
-     * @Given /^I have (\d+) root node entities that's created at "(\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2})"/
+     * @Given /^I want to create (\d+) root node entities with created at date "(\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2})"/
      *
+     * @maram int $count
      * @param string $createdAt
      */
-    public function iHaveEntityThatsCreatedAt(int $count, string $createdAt)
+    public function iWantToCreateNRootNodeEntitiesWithCreatedAtDate(int $count, string $createdAt)
     {
         $this->rootNodes = array_fill(
             0,
@@ -26,9 +27,9 @@ class CreateTreeFeatureContext extends FeatureContext
     }
 
     /**
-     * @When I create a new tree
+     * @When I create a new tree root nodes
      */
-    public function iCreateANewTree()
+    public function iCreateANewTreeRootNodes()
     {
         foreach ($this->rootNodes as &$rootNode) {
             $this->getRepository()->persistRootNode($rootNode);
@@ -36,13 +37,13 @@ class CreateTreeFeatureContext extends FeatureContext
     }
 
     /**
-     * @Then I should get:
+     * @Then I should get these rows in database:
      *
      * @param TableNode $expectedRootNodes
      *
      * @throws \Exception
      */
-    public function iShouldGet(TableNode $expectedRootNodes)
+    public function iShouldGetTheseRowsInDatabase(TableNode $expectedRootNodes)
     {
         /** @var NestedSet[] $rootNodes */
         $rootNodes = $this->getRepository()->findAll();
