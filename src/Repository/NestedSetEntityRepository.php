@@ -458,11 +458,11 @@ class NestedSetEntityRepository extends EntityRepository
     }
 
     /**
-     * @param \Exception $e
+     * @param \Throwable $e
      *
-     * @throws \Exception
+     * @throws \Throwable
      */
-    private function rollbackTransaction(\Exception $e)
+    private function rollbackTransaction(\Throwable $e)
     {
         if (true === $this->newTransaction) {
             $this->getEntityManager()->getConnection()->rollBack();
