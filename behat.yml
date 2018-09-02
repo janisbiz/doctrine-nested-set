@@ -1,0 +1,20 @@
+---
+default:
+    formatters:
+        progress:
+            verbose: true
+            paths: true
+            snippets: true
+
+    exceptions:
+        verbosity: 2
+
+    gherkin:
+        cache: '%paths.base%/var/cache'
+
+    suites:
+        nestedSet:
+            paths:
+              - '%paths.base%/src/Tests/Features/NestedSet'
+            contexts:
+              - Janisbiz\DoctrineNestedSet\Tests\Features\NestedSet\NestedSetFeatureContext
