@@ -26,7 +26,8 @@ There are two ways to run tests:
     - Execute `docker-compose exec php composer install`
     - Execute `docker-compose exec php vendor/bin/behat`
 2) By using your local php and mysql database environment:
-    - ensure, that your php version is `7.1.x`
-    - install `pdo_mysql` extension for php
-    - adjust database connection in [configuration file](src/Tests/Features/Bootstrap/Resources/config/doctrine.yaml)
-    - run `vendor/bin/behat`
+    - Ensure, that your php version is `7.1.x`
+    - Install `pdo_mysql` extension for php
+    - Adjust database connection in [configuration file](src/Tests/Features/Bootstrap/Resources/config/doctrine.yaml)
+    - Execute `composer install`
+    - Execute `vendor/bin/behat`
