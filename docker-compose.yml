@@ -1,11 +1,9 @@
-version: '3.7'
+version: '3.3'
 
 services:
   mysql:
     build:
       context: .docker/mysql
-      args:
-        password: $DOCKER_MYSQL_PASSWORD
     environment:
       MYSQL_ROOT_PASSWORD: $DOCKER_MYSQL_PASSWORD
     ports:

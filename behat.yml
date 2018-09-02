@@ -17,4 +17,4 @@ default:
             paths:
               - '%paths.base%/src/Tests/Features/NestedSet'
             contexts:
-              - Janisbiz\DoctrineNestedSet\Tests\Features\NestedSet\CreateTreeFeatureContext
+              - Janisbiz\DoctrineNestedSet\Tests\Features\NestedSet\NestedSetFeatureContext

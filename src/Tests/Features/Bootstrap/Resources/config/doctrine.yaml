@@ -1,5 +1,5 @@
 ---
-dbname: behat
+dbname: janisbiz_doctrine_nested_set_behat
 user: root
 password: password
 host: mysql

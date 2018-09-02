@@ -12,12 +12,24 @@ use Symfony\Component\Yaml\Yaml;
 
 class FeatureContext implements Context
 {
+    /**
+     * @var EntityManager
+     */
     private $entityManager;
 
+    /**
+     * @var SchemaTool
+     */
     private $schemaTool;
 
+    /**
+     * @var Configuration
+     */
     private $annotationMetadataConfiguration;
 
+    /**
+     * @var array
+     */
     private $connectionConfiguration;
 
     public function __construct()
@@ -57,7 +69,7 @@ class FeatureContext implements Context
     /**
      * @return EntityManager
      */
-    public function getEntityManager()
+    public function getEntityManager(): EntityManager
     {
         if (null === $this->entityManager) {
             $this->entityManager = EntityManager::create(
@@ -72,7 +84,7 @@ class FeatureContext implements Context
     /**
      * @return SchemaTool
      */
-    private function getSchemaTool()
+    private function getSchemaTool(): SchemaTool
     {
         if (null === $this->schemaTool) {
             $this->schemaTool = new SchemaTool($this->getEntityManager());
@@ -84,7 +96,7 @@ class FeatureContext implements Context
     /**
      * @return Configuration
      */
-    private function getAnnotationMetadataConfiguration()
+    private function getAnnotationMetadataConfiguration(): Configuration
     {
         if (null === $this->annotationMetadataConfiguration) {
             $this->annotationMetadataConfiguration = Setup::createAnnotationMetadataConfiguration([
@@ -98,7 +110,7 @@ class FeatureContext implements Context
     /**
      * @return array
      */
-    private function getConnectionConfiguration()
+    private function getConnectionConfiguration(): array
     {
         if (null === $this->connectionConfiguration) {
             $this->connectionConfiguration = Yaml::parse(file_get_contents(sprintf(
