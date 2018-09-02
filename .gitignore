@@ -3,3 +3,9 @@
 
 # Composer
 vendor
+
+# Docker
+.env
+
+# Behat
+var/cache
