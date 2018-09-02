@@ -62,5 +62,5 @@ interface NestedSetEntityInterface
      *
      * @return $this
      */
-    public function setTreeLevel(int$treeLevel);
+    public function setTreeLevel(int $treeLevel);
 }
