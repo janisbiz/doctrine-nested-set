@@ -37,7 +37,7 @@ parameters:
         - "ladybug_dump"
         - "if (true ||)"
         - "if (false &&)"
-      triggered_by: [php]
+      triggered_by: ['php']
       regexp_type: G
     phpcs:
       standard: PSR2
@@ -47,14 +47,14 @@ parameters:
       encoding: ~
       ignore_patterns: []
       sniffs: []
-        triggered_by: [php]
+      triggered_by: ['php']
     phplint: ~
     phpmd:
       exclude:
-        - vendor/
-        - config/
-        - var/
-        - *Test.php
+        - 'vendor/'
+        - 'config/'
+        - 'var/'
+        - '*Test.php'
       ruleset:
         - phpmd.xml
       triggered_by:
