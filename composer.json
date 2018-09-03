@@ -36,5 +36,9 @@
     "psr-4": {
       "Janisbiz\\DoctrineNestedSet\\": "src/"
     }
+  },
+  "scripts": {
+    "post-install-cmd": "\"./vendor/bin/phpcs\" --config-set installed_paths vendor/wimg/php-compatibility",
+    "post-update-cmd" : "\"./vendor/bin/phpcs\" --config-set installed_paths vendor/wimg/php-compatibility"
   }
 }
