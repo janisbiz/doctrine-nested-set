@@ -20,7 +20,7 @@ class NestedSetEntityRepository extends EntityRepository
      * @return NestedSetEntityInterface
      * @throws NestedSetException
      */
-    public function persistRootNode(NestedSetEntityInterface $node): NestedSetEntityInterface
+    public function persistRootNode(NestedSetEntityInterface $node)
     {
         $entityManager = $this->getEntityManager();
 
@@ -42,7 +42,7 @@ class NestedSetEntityRepository extends EntityRepository
             $entityManager->flush($node);
 
             $this->executeTransaction();
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             $this->rollbackTransaction();
 
             throw $e;
@@ -57,10 +57,8 @@ class NestedSetEntityRepository extends EntityRepository
      *
      * @return NestedSetEntityInterface
      */
-    public function persistChildNode(
-        NestedSetEntityInterface $node,
-        NestedSetEntityInterface $of
-    ): NestedSetEntityInterface {
+    public function persistChildNode(NestedSetEntityInterface $node, NestedSetEntityInterface $of)
+    {
         $this->reloadNodeNestedSetData($of);
 
         $node
@@ -82,10 +80,8 @@ class NestedSetEntityRepository extends EntityRepository
      *
      * @return NestedSetEntityInterface
      */
-    public function persistNodeAfter(
-        NestedSetEntityInterface $node,
-        NestedSetEntityInterface $after
-    ): NestedSetEntityInterface {
+    public function persistNodeAfter(NestedSetEntityInterface $node, NestedSetEntityInterface $after)
+    {
         $this->reloadNodeNestedSetData($after);
 
         $node
@@ -107,10 +103,8 @@ class NestedSetEntityRepository extends EntityRepository
      *
      * @return NestedSetEntityInterface
      */
-    public function persistNodeBefore(
-        NestedSetEntityInterface $node,
-        NestedSetEntityInterface $before
-    ): NestedSetEntityInterface {
+    public function persistNodeBefore(NestedSetEntityInterface $node, NestedSetEntityInterface $before)
+    {
         $this->reloadNodeNestedSetData($before);
 
         $node
@@ -133,10 +127,8 @@ class NestedSetEntityRepository extends EntityRepository
      * @return NestedSetEntityInterface
      * @throws NestedSetException
      */
-    public function moveNodeAfter(
-        NestedSetEntityInterface $node,
-        NestedSetEntityInterface $after
-    ): NestedSetEntityInterface {
+    public function moveNodeAfter(NestedSetEntityInterface $node, NestedSetEntityInterface $after)
+    {
         $this->reloadNodeNestedSetData($node);
 
         if ($this->hasChildren($node)) {
@@ -163,7 +155,7 @@ class NestedSetEntityRepository extends EntityRepository
             $this->updateLeftNodes($node)->updateRightNodes($node);
 
             $this->executeTransaction();
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             $this->rollbackTransaction();
 
             throw $e;
@@ -181,10 +173,8 @@ class NestedSetEntityRepository extends EntityRepository
      * @return NestedSetEntityInterface
      * @throws NestedSetException
      */
-    public function moveNodeBefore(
-        NestedSetEntityInterface $node,
-        NestedSetEntityInterface $before
-    ): NestedSetEntityInterface {
+    public function moveNodeBefore(NestedSetEntityInterface $node, NestedSetEntityInterface $before)
+    {
         $this->reloadNodeNestedSetData($node);
 
         if ($this->hasChildren($node)) {
@@ -211,7 +201,7 @@ class NestedSetEntityRepository extends EntityRepository
             $this->updateLeftNodes($node)->updateRightNodes($node);
 
             $this->executeTransaction();
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             $this->rollbackTransaction();
 
             throw $e;
@@ -227,7 +217,7 @@ class NestedSetEntityRepository extends EntityRepository
      *
      * @return bool
      */
-    public function removeNode(NestedSetEntityInterface $node): bool
+    public function removeNode(NestedSetEntityInterface $node)
     {
         $entityManager = $this->getEntityManager();
 
@@ -247,7 +237,7 @@ class NestedSetEntityRepository extends EntityRepository
             $entityManager->flush($node);
 
             $this->executeTransaction();
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             $this->rollbackTransaction();
 
             throw $e;
@@ -261,7 +251,7 @@ class NestedSetEntityRepository extends EntityRepository
      *
      * @return NestedSetEntityInterface[]
      */
-    public function loadTree($treeScopeId): array
+    public function loadTree($treeScopeId)
     {
         return $this
             ->getEntityManager()
@@ -281,7 +271,7 @@ class NestedSetEntityRepository extends EntityRepository
      *
      * @return $this
      */
-    public function removeTree($treeScopeId): NestedSetEntityRepository
+    public function removeTree($treeScopeId)
     {
         $entityManager = $this->getEntityManager();
         $tree = $this->loadTree($treeScopeId);
@@ -314,7 +304,7 @@ class NestedSetEntityRepository extends EntityRepository
      *
      * @return NestedSetEntityInterface[]
      */
-    public function getChildren(NestedSetEntityInterface $node, $includeNode = false): array
+    public function getChildren(NestedSetEntityInterface $node, $includeNode = false)
     {
         $qb = $this
             ->getEntityManager()
@@ -331,11 +321,11 @@ class NestedSetEntityRepository extends EntityRepository
         }
 
         return $qb
-            ->setParameters([
+            ->setParameters(array(
                 'treeScopeId' => $node->getTreeScopeId(),
                 'treeLeft' => $node->getTreeLeft(),
                 'treeRight' => $node->getTreeRight(),
-            ])
+            ))
             ->groupBy('tree.id')
             ->orderBy('tree.treeLeft', 'ASC')
             ->getQuery()
@@ -348,7 +338,7 @@ class NestedSetEntityRepository extends EntityRepository
      *
      * @return bool
      */
-    public function hasChildren(NestedSetEntityInterface $node): bool
+    public function hasChildren(NestedSetEntityInterface $node)
     {
         return $node->getTreeRight() - $node->getTreeLeft() > 1;
     }
@@ -358,7 +348,7 @@ class NestedSetEntityRepository extends EntityRepository
      *
      * @return NestedSetEntityRepository
      */
-    private function reloadNodeNestedSetData(NestedSetEntityInterface &$node): NestedSetEntityRepository
+    private function reloadNodeNestedSetData(NestedSetEntityInterface &$node)
     {
         /** @var NestedSetEntityInterface|null $nodeReloaded */
         if (null === ($node = $this->find($node->getId()))) {
@@ -373,7 +363,7 @@ class NestedSetEntityRepository extends EntityRepository
      *
      * @return NestedSetEntityInterface
      */
-    private function insertNode(NestedSetEntityInterface $node): NestedSetEntityInterface
+    private function insertNode(NestedSetEntityInterface $node)
     {
         $entityManager = $this->getEntityManager();
 
@@ -386,7 +376,7 @@ class NestedSetEntityRepository extends EntityRepository
             $this->updateLeftNodes($node)->updateRightNodes($node);
 
             $this->executeTransaction();
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             $this->rollbackTransaction();
 
             throw $e;
@@ -401,7 +391,7 @@ class NestedSetEntityRepository extends EntityRepository
      *
      * @return $this
      */
-    private function updateLeftNodes(NestedSetEntityInterface $node, $delete = false): NestedSetEntityRepository
+    private function updateLeftNodes(NestedSetEntityInterface $node, $delete = false)
     {
         $entityManager = $this->getEntityManager();
 
@@ -412,11 +402,11 @@ class NestedSetEntityRepository extends EntityRepository
             ->where('tree.treeScopeId = :treeScopeId')
             ->andWhere('tree.treeLeft >= :treeLeft')
             ->andWhere('tree.id != :id')
-            ->setParameters([
+            ->setParameters(array(
                 'treeScopeId' => $node->getTreeScopeId(),
                 'treeLeft' => $node->getTreeLeft(),
                 'id' => $node->getId(),
-            ])
+            ))
             ->getQuery()
             ->getResult()
         ;
@@ -441,7 +431,7 @@ class NestedSetEntityRepository extends EntityRepository
      *
      * @return $this
      */
-    private function updateRightNodes(NestedSetEntityInterface $node, $delete = false): NestedSetEntityRepository
+    private function updateRightNodes(NestedSetEntityInterface $node, $delete = false)
     {
         $entityManager = $this->getEntityManager();
 
@@ -452,11 +442,11 @@ class NestedSetEntityRepository extends EntityRepository
             ->where('tree.treeScopeId = :treeScopeId')
             ->andWhere('tree.treeRight >= :treeRight')
             ->andWhere('tree.id != :id')
-            ->setParameters([
+            ->setParameters(array(
                 'treeScopeId' => $node->getTreeScopeId(),
                 'treeRight' => $node->getTreeRight() - ($delete ? 0 : 1),
                 'id' => $node->getId(),
-            ])
+            ))
             ->getQuery()
             ->getResult()
         ;
@@ -478,7 +468,7 @@ class NestedSetEntityRepository extends EntityRepository
     /**
      * @return $this
      */
-    private function beginTransaction(): NestedSetEntityRepository
+    private function beginTransaction()
     {
         $entityManager = $this->getEntityManager();
 
@@ -494,7 +484,7 @@ class NestedSetEntityRepository extends EntityRepository
     /**
      * @return $this
      */
-    private function executeTransaction(): NestedSetEntityRepository
+    private function executeTransaction()
     {
         if (true === $this->newTransaction) {
             $this->getEntityManager()->getConnection()->commit();
@@ -508,7 +498,7 @@ class NestedSetEntityRepository extends EntityRepository
     /**
      * @return NestedSetEntityRepository
      */
-    private function rollbackTransaction(): NestedSetEntityRepository
+    private function rollbackTransaction()
     {
         if (true === $this->newTransaction) {
             $this->getEntityManager()->getConnection()->rollBack();

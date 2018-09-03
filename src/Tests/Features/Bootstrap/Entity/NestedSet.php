@@ -58,7 +58,7 @@ class NestedSet implements NestedSetEntityInterface
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -68,7 +68,7 @@ class NestedSet implements NestedSetEntityInterface
      *
      * @return $this
      */
-    public function setId(int $id): NestedSet
+    public function setId($id)
     {
         $this->id = $id;
 
@@ -78,7 +78,7 @@ class NestedSet implements NestedSetEntityInterface
     /**
      * @return int
      */
-    public function getTreeScopeId(): ?int
+    public function getTreeScopeId()
     {
         return $this->treeScopeId;
     }
@@ -88,7 +88,7 @@ class NestedSet implements NestedSetEntityInterface
      *
      * @return $this
      */
-    public function setTreeScopeId(?int $treeScopeId): NestedSet
+    public function setTreeScopeId($treeScopeId)
     {
         $this->treeScopeId = $treeScopeId;
 
@@ -98,7 +98,7 @@ class NestedSet implements NestedSetEntityInterface
     /**
      * @return int
      */
-    public function getTreeLeft(): int
+    public function getTreeLeft()
     {
         return $this->treeLeft;
     }
@@ -108,7 +108,7 @@ class NestedSet implements NestedSetEntityInterface
      *
      * @return $this
      */
-    public function setTreeLeft(int $treeLeft): NestedSet
+    public function setTreeLeft($treeLeft)
     {
         $this->treeLeft = $treeLeft;
 
@@ -118,7 +118,7 @@ class NestedSet implements NestedSetEntityInterface
     /**
      * @return int
      */
-    public function getTreeRight(): int
+    public function getTreeRight()
     {
         return $this->treeRight;
     }
@@ -128,7 +128,7 @@ class NestedSet implements NestedSetEntityInterface
      *
      * @return $this
      */
-    public function setTreeRight(int $treeRight): NestedSet
+    public function setTreeRight($treeRight)
     {
         $this->treeRight = $treeRight;
 
@@ -138,7 +138,7 @@ class NestedSet implements NestedSetEntityInterface
     /**
      * @return int
      */
-    public function getTreeLevel(): int
+    public function getTreeLevel()
     {
         return $this->treeLevel;
     }
@@ -148,7 +148,7 @@ class NestedSet implements NestedSetEntityInterface
      *
      * @return $this
      */
-    public function setTreeLevel(int $treeLevel): NestedSet
+    public function setTreeLevel($treeLevel)
     {
         $this->treeLevel = $treeLevel;
 
@@ -158,7 +158,7 @@ class NestedSet implements NestedSetEntityInterface
     /**
      * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->createdAt;
     }
@@ -168,7 +168,7 @@ class NestedSet implements NestedSetEntityInterface
      *
      * @return $this
      */
-    public function setCreatedAt(\DateTime $createdAt): NestedSet
+    public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
 

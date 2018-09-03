@@ -7,60 +7,60 @@ interface NestedSetEntityInterface
     /**
      * @return int
      */
-    public function getId(): int;
+    public function getId();
 
     /**
      * @param int $id
      *
      * @return $this
      */
-    public function setId(int $id);
+    public function setId($id);
 
     /**
      * @return int
      */
-    public function getTreeScopeId(): ?int;
+    public function getTreeScopeId();
 
     /**
      * @param int|null $treeScopeId
      *
      * @return $this
      */
-    public function setTreeScopeId(?int $treeScopeId);
+    public function setTreeScopeId($treeScopeId);
 
     /**
      * @return int
      */
-    public function getTreeLeft(): int;
+    public function getTreeLeft();
 
     /**
      * @param int $treeLeft
      *
      * @return $this
      */
-    public function setTreeLeft(int $treeLeft);
+    public function setTreeLeft($treeLeft);
 
     /**
      * @return int
      */
-    public function getTreeRight(): int;
+    public function getTreeRight();
 
     /**
      * @param int $treeRight
      *
      * @return $this
      */
-    public function setTreeRight(int $treeRight);
+    public function setTreeRight($treeRight);
 
     /**
      * @return int
      */
-    public function getTreeLevel(): int;
+    public function getTreeLevel();
 
     /**
      * @param int $treeLevel
      *
      * @return $this
      */
-    public function setTreeLevel(int $treeLevel);
+    public function setTreeLevel($treeLevel);
 }

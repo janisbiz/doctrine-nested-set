@@ -18,7 +18,7 @@ class NestedSetFeatureContext extends FeatureContext
     /**
      * @var NestedSet[]
      */
-    private $nodes;
+    private $nodes = array();
 
     /**
      * @Given /^I want to create (\d+) root node entities with created at date "(\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2})"/
@@ -26,9 +26,9 @@ class NestedSetFeatureContext extends FeatureContext
      * @param int $count
      * @param string $createdAt
      */
-    public function iWantToCreateNRootNodeEntitiesWithCreatedAtDate(int $count, string $createdAt)
+    public function iWantToCreateNRootNodeEntitiesWithCreatedAtDate($count, $createdAt)
     {
-        for ($counter = 0; $counter < $count; $counter++) {
+        for ($counter = 0; $counter < (int) $count; $counter++) {
             $this->nodes[] = $this->createEntity($createdAt);
         }
     }
@@ -49,15 +49,15 @@ class NestedSetFeatureContext extends FeatureContext
      * @param int $count
      * @param string $createdAt
      */
-    public function iAddNChildrenWithCreatedAtDate(int $count, string $createdAt)
+    public function iAddNChildrenWithCreatedAtDate($count, $createdAt)
     {
         foreach ($this->nodes as &$rootNode) {
-            if ($rootNode->getTreeLevel() === 0 && $rootNode->getTreeLeft() === 0) {
-                for ($counter = 0; $counter < $count; $counter++) {
-                    $this->nodes[] = $this->getRepository()->persistChildNode(
-                        $this->createEntity($createdAt),
-                        $rootNode
-                    );
+            if (0 === $rootNode->getTreeLevel() && 0 === $rootNode->getTreeLeft()) {
+                for ($counter = 0; $counter < (int) $count; $counter++) {
+                    $this->nodes[] = $this
+                        ->getRepository()
+                        ->persistChildNode($this->createEntity($createdAt), $rootNode)
+                    ;
                 }
             }
         }
@@ -71,11 +71,11 @@ class NestedSetFeatureContext extends FeatureContext
      * @param string $createdAt
      * @param int $level
      */
-    public function iAddNChildrenWithCreatedAtDateOfNodesWithLevel(int $count, string $createdAt, int $level)
+    public function iAddNChildrenWithCreatedAtDateOfNodesWithLevel($count, $createdAt, $level)
     {
         foreach ($this->nodes as &$node) {
-            if ($node->getTreeLevel() === $level) {
-                for ($counter = 0; $counter < $count; $counter++) {
+            if ((int) $level === $node->getTreeLevel()) {
+                for ($counter = 0; $counter < (int) $count; $counter++) {
                     $this->nodes[] = $this->getRepository()->persistChildNode($this->createEntity($createdAt), $node);
                 }
             }
@@ -90,11 +90,11 @@ class NestedSetFeatureContext extends FeatureContext
      * @param string $createdAt
      * @param int $id
      */
-    public function iAddNChildrenWithCreatedAtDateAfterNodeWithId(int $count, string $createdAt, int $id)
+    public function iAddNChildrenWithCreatedAtDateAfterNodeWithId($count, $createdAt, $id)
     {
         foreach ($this->nodes as &$node) {
-            if ($node->getId() === $id) {
-                for ($counter = 0; $counter < $count; $counter++) {
+            if ((int) $id === $node->getId()) {
+                for ($counter = 0; $counter < (int) $count; $counter++) {
                     $this->nodes[] = $this->getRepository()->persistNodeAfter($this->createEntity($createdAt), $node);
                 }
             }
@@ -109,11 +109,11 @@ class NestedSetFeatureContext extends FeatureContext
      * @param string $createdAt
      * @param int $id
      */
-    public function iAddNChildrenWithCreatedAtDateBeforeNodeWithId(int $count, string $createdAt, int $id)
+    public function iAddNChildrenWithCreatedAtDateBeforeNodeWithId($count, $createdAt, $id)
     {
         foreach ($this->nodes as &$node) {
-            if ($node->getId() === $id) {
-                for ($counter = 0; $counter < $count; $counter++) {
+            if ((int) $id === $node->getId()) {
+                for ($counter = 0; $counter < (int) $count; $counter++) {
                     $this->nodes[] = $this->getRepository()->persistNodeBefore($this->createEntity($createdAt), $node);
                 }
             }
@@ -126,15 +126,15 @@ class NestedSetFeatureContext extends FeatureContext
      * @param int $targetId
      * @param int $idAfter
      */
-    public function iMoveNodeWithIdAfterNodeWithId(int $targetId, int $idAfter)
+    public function iMoveNodeWithIdAfterNodeWithId($targetId, $idAfter)
     {
         $targetNode = null;
         $nodeAfter = null;
 
         foreach ($this->nodes as &$node) {
-            if ($targetId === $node->getId()) {
+            if ((int) $targetId === $node->getId()) {
                 $targetNode = $node;
-            } elseif ($idAfter === $node->getId()) {
+            } elseif ((int) $idAfter === $node->getId()) {
                 $nodeAfter = $node;
             }
         }
@@ -152,15 +152,15 @@ class NestedSetFeatureContext extends FeatureContext
      * @param int $targetId
      * @param int $idBefore
      */
-    public function iMoveNodeWithIdBeforeNodeWithId(int $targetId, int $idBefore)
+    public function iMoveNodeWithIdBeforeNodeWithId($targetId, $idBefore)
     {
         $targetNode = null;
         $nodeBefore = null;
 
         foreach ($this->nodes as &$node) {
-            if ($targetId === $node->getId()) {
+            if ((int) $targetId === $node->getId()) {
                 $targetNode = $node;
-            } elseif ($idBefore === $node->getId()) {
+            } elseif ((int) $idBefore === $node->getId()) {
                 $nodeBefore = $node;
             }
         }
@@ -177,10 +177,10 @@ class NestedSetFeatureContext extends FeatureContext
      *
      * @param int $id
      */
-    public function iRemoveNodeWithId(int $id)
+    public function iRemoveNodeWithId($id)
     {
         foreach ($this->nodes as $node) {
-            if ($id === $node->getId()) {
+            if ((int) $id === $node->getId()) {
                 $this->getRepository()->removeNode($node);
             }
         }
@@ -191,7 +191,7 @@ class NestedSetFeatureContext extends FeatureContext
      *
      * @param int $id
      */
-    public function iLoadTreeWithScopeId(int $id)
+    public function iLoadTreeWithScopeId($id)
     {
         $this->nodes = $this->getRepository()->loadTree($id);
     }
@@ -204,7 +204,7 @@ class NestedSetFeatureContext extends FeatureContext
      *
      * @throws \Exception
      */
-    public function iShouldGetTheseRowsInDatabaseFilteredByScopeId(TableNode $expectedNodes, int $filterScopeId)
+    public function iShouldGetTheseRowsInDatabaseFilteredByScopeId(TableNode $expectedNodes, $filterScopeId)
     {
         $this->iShouldGetTheseRowsInDatabase($expectedNodes, $filterScopeId);
     }
@@ -217,7 +217,7 @@ class NestedSetFeatureContext extends FeatureContext
      *
      * @throws \Exception
      */
-    public function iShouldGetTheseRowsInDatabase(TableNode $expectedNodes, int $filterScopeId = null)
+    public function iShouldGetTheseRowsInDatabase(TableNode $expectedNodes, $filterScopeId = null)
     {
         /** @var NestedSet[] $nodes */
         $nodesQuery = $this
@@ -228,10 +228,14 @@ class NestedSetFeatureContext extends FeatureContext
         ;
 
         if (null !== $filterScopeId) {
-            $nodesQuery->where('ns.treeScopeId = :treeScopeId')->setParameter('treeScopeId', $filterScopeId);
+            $nodesQuery->where('ns.treeScopeId = :treeScopeId')->setParameter('treeScopeId', (int) $filterScopeId);
         }
 
         $nodes = $nodesQuery->getQuery()->getResult();
+
+//        dump($nodes);
+//        dump(count($expectedNodes->getIterator()));
+//        dump(count($nodes));
 
         if (count($expectedNodes->getIterator()) !== count($nodes)) {
             throw new \Exception('Count of expected nodes doesn\'t match count of persisted nodes!');
@@ -262,18 +266,20 @@ class NestedSetFeatureContext extends FeatureContext
      *
      * @return NestedSet
      */
-    private function createEntity(string $createdAt): NestedSet
+    private function createEntity($createdAt)
     {
-        return (new NestedSet())->setCreatedAt(new \DateTime($createdAt));
+        $nestedSet = new NestedSet();
+
+        return $nestedSet->setCreatedAt(new \DateTime($createdAt));
     }
 
     /**
      * @return NestedSetRepository
      */
-    private function getRepository(): NestedSetEntityRepository
+    private function getRepository()
     {
         if (null === $this->nestedSetEntityRepository) {
-            $this->nestedSetEntityRepository = $this->getEntityManager()->getRepository(NestedSet::class);
+            $this->nestedSetEntityRepository = $this->getEntityManager()->getRepository(get_class(new NestedSet()));
         }
 
         return $this->nestedSetEntityRepository;

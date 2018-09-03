@@ -34,6 +34,8 @@ class FeatureContext implements Context
 
     public function __construct()
     {
+        date_default_timezone_set('UTC');
+
         $connectionConfiguration = $this->getConnectionConfiguration();
         $dbName = $connectionConfiguration['dbname'];
         unset($connectionConfiguration['dbname']);
@@ -69,7 +71,7 @@ class FeatureContext implements Context
     /**
      * @return EntityManager
      */
-    public function getEntityManager(): EntityManager
+    public function getEntityManager()
     {
         if (null === $this->entityManager) {
             $this->entityManager = EntityManager::create(
@@ -84,7 +86,7 @@ class FeatureContext implements Context
     /**
      * @return SchemaTool
      */
-    private function getSchemaTool(): SchemaTool
+    private function getSchemaTool()
     {
         if (null === $this->schemaTool) {
             $this->schemaTool = new SchemaTool($this->getEntityManager());
@@ -96,12 +98,18 @@ class FeatureContext implements Context
     /**
      * @return Configuration
      */
-    private function getAnnotationMetadataConfiguration(): Configuration
+    private function getAnnotationMetadataConfiguration()
     {
         if (null === $this->annotationMetadataConfiguration) {
-            $this->annotationMetadataConfiguration = Setup::createAnnotationMetadataConfiguration([
-                sprintf('%s/Entity', __DIR__),
-            ], true, null, null, false);
+            $this->annotationMetadataConfiguration = Setup::createAnnotationMetadataConfiguration(
+                array(
+                    sprintf('%s/Entity', __DIR__),
+                ),
+                true,
+                null,
+                null,
+                false
+            );
         }
 
         return $this->annotationMetadataConfiguration;
@@ -110,7 +118,7 @@ class FeatureContext implements Context
     /**
      * @return array
      */
-    private function getConnectionConfiguration(): array
+    private function getConnectionConfiguration()
     {
         if (null === $this->connectionConfiguration) {
             $this->connectionConfiguration = Yaml::parse(file_get_contents(sprintf(

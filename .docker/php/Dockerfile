@@ -1,4 +1,4 @@
-FROM php:7.1
+FROM php:5.6
 
 # Setup the Composer installer
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
@@ -12,8 +12,6 @@ WORKDIR "/var/www"
 
 ARG LOCAL_USER_ID=1000
 ARG LOCAL_GROUP_ID=1000
-
-RUN pecl install xdebug
 
 RUN set -xe && \
   groupadd -g $LOCAL_GROUP_ID -o -f user && \
