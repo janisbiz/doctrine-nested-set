@@ -17,5 +17,5 @@ before_script:
   - composer install
 
 script:
-  - vendor/bin/phpcs -p ./src --standard=PHPCompatibility,PSR2 --runtime-set testVersion 7.1-
+  - vendor/bin/phpcs -p ./src --standard=PHPCompatibility,PSR2 --runtime-set testVersion 7.1
   - vendor/bin/behat
