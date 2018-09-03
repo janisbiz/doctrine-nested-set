@@ -387,7 +387,7 @@ class NestedSetEntityRepository extends EntityRepository
 
             $this->executeTransaction();
         } catch (\Throwable $e) {
-            $this->rollbackTransaction($e);
+            $this->rollbackTransaction();
 
             throw $e;
         }
