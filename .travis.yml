@@ -4,7 +4,7 @@ services:
   - mysql
 
 php:
-  - 7.1
+  - 7.0
 
 addons:
   hosts:
@@ -17,5 +17,5 @@ before_script:
   - composer install
 
 script:
-  - vendor/bin/phpcs -p ./src --standard=PHPCompatibility,PSR2 --runtime-set testVersion 7.1-
+  - vendor/bin/phpcs -p ./src --standard=PHPCompatibility,PSR2 --runtime-set testVersion 7.0
   - vendor/bin/behat

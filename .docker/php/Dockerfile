@@ -1,4 +1,4 @@
-FROM php:7.1
+FROM php:7.0
 
 # Setup the Composer installer
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \

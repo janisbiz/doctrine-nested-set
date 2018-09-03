@@ -1,7 +1,7 @@
 # Doctrine nested set
 
 [![Latest Stable Version](https://poser.pugx.org/janisbiz/doctrine-nested-set/v/stable)](https://packagist.org/packages/janisbiz/doctrine-nested-set)
-[![Build Status](https://travis-ci.com/janisbiz/doctrine-nested-set.svg?branch=master)](https://travis-ci.com/janisbiz/doctrine-nested-set)
+[![Build Status](https://travis-ci.com/janisbiz/doctrine-nested-set.svg?branch=php7.0.x)](https://travis-ci.com/janisbiz/doctrine-nested-set)
 [![Total Downloads](https://poser.pugx.org/janisbiz/doctrine-nested-set/downloads)](https://packagist.org/packages/janisbiz/doctrine-nested-set)
 ![Deps](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)
 
@@ -35,7 +35,7 @@ There are two ways to run tests:
     - Execute `docker-compose exec php composer install`
     - Execute `docker-compose exec php vendor/bin/behat`
 2) By using your local php and mysql database environment:
-    - Ensure, that your php version is `7.1.x`
+    - Ensure, that your php version is `7.0.x`
     - Install `pdo_mysql` extension for php
     - Adjust database connection in [configuration file](src/Tests/Features/Bootstrap/Resources/config/doctrine.yaml)
     - Execute `composer install`

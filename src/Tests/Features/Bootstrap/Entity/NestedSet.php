@@ -78,7 +78,7 @@ class NestedSet implements NestedSetEntityInterface
     /**
      * @return int
      */
-    public function getTreeScopeId(): ?int
+    public function getTreeScopeId()
     {
         return $this->treeScopeId;
     }
@@ -88,7 +88,7 @@ class NestedSet implements NestedSetEntityInterface
      *
      * @return $this
      */
-    public function setTreeScopeId(?int $treeScopeId): NestedSet
+    public function setTreeScopeId($treeScopeId): NestedSet
     {
         $this->treeScopeId = $treeScopeId;
 

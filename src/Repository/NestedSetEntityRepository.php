@@ -130,13 +130,11 @@ class NestedSetEntityRepository extends EntityRepository
      * @param NestedSetEntityInterface $node
      * @param NestedSetEntityInterface $after
      *
-     * @return NestedSetEntityInterface
+     * @return bool
      * @throws NestedSetException
      */
-    public function moveNodeAfter(
-        NestedSetEntityInterface $node,
-        NestedSetEntityInterface $after
-    ): NestedSetEntityInterface {
+    public function moveNodeAfter(NestedSetEntityInterface $node, NestedSetEntityInterface $after): bool
+    {
         $this->reloadNodeNestedSetData($node);
 
         if ($this->hasChildren($node)) {
@@ -171,7 +169,7 @@ class NestedSetEntityRepository extends EntityRepository
 
         $this->reloadNodeNestedSetData($node)->reloadNodeNestedSetData($after);
 
-        return $node;
+        return true;
     }
 
     /**
@@ -506,7 +504,7 @@ class NestedSetEntityRepository extends EntityRepository
     }
 
     /**
-     * @return NestedSetEntityRepository
+     * @return $this
      */
     private function rollbackTransaction(): NestedSetEntityRepository
     {

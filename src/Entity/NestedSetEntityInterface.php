@@ -19,14 +19,14 @@ interface NestedSetEntityInterface
     /**
      * @return int
      */
-    public function getTreeScopeId(): ?int;
+    public function getTreeScopeId();
 
     /**
      * @param int|null $treeScopeId
      *
      * @return $this
      */
-    public function setTreeScopeId(?int $treeScopeId);
+    public function setTreeScopeId($treeScopeId);
 
     /**
      * @return int
@@ -62,5 +62,5 @@ interface NestedSetEntityInterface
      *
      * @return $this
      */
-    public function setTreeLevel(int $treeLevel);
+    public function setTreeLevel(int$treeLevel);
 }
