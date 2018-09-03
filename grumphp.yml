@@ -60,6 +60,8 @@ parameters:
       triggered_by:
         - php
     yamllint:
+      whitelist_patterns:
+        - /^src\/.*/
       ignore_patterns: []
       object_support: false
       exception_on_invalid_type: false
