@@ -1,7 +1,7 @@
 # Doctrine nested set
 
 [![Latest Stable Version](https://poser.pugx.org/janisbiz/doctrine-nested-set/v/stable)](https://packagist.org/packages/janisbiz/doctrine-nested-set)
-[![Build Status](https://travis-ci.com/janisbiz/doctrine-nested-set.svg?branch=master)](https://travis-ci.com/janisbiz/doctrine-nested-set)
+[![Build Status](https://travis-ci.com/janisbiz/doctrine-nested-set.svg?branch=php7.0.x)](https://travis-ci.com/janisbiz/doctrine-nested-set)
 [![Total Downloads](https://poser.pugx.org/janisbiz/doctrine-nested-set/downloads)](https://packagist.org/packages/janisbiz/doctrine-nested-set)
 ![Deps](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)
 
