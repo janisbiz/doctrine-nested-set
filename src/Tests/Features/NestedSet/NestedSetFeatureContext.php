@@ -6,7 +6,6 @@ use Behat\Gherkin\Node\TableNode;
 use Janisbiz\DoctrineNestedSet\Repository\NestedSetEntityRepository;
 use Janisbiz\DoctrineNestedSet\Tests\Features\Bootstrap\Entity\NestedSet;
 use Janisbiz\DoctrineNestedSet\Tests\Features\Bootstrap\FeatureContext;
-use Janisbiz\DoctrineNestedSet\Tests\Features\Bootstrap\Repository\NestedSetRepository;
 
 class NestedSetFeatureContext extends FeatureContext
 {
@@ -125,6 +124,8 @@ class NestedSetFeatureContext extends FeatureContext
      *
      * @param int $targetId
      * @param int $idAfter
+     *
+     * @throws \Exception
      */
     public function iMoveNodeWithIdAfterNodeWithId(int $targetId, int $idAfter)
     {
@@ -151,6 +152,8 @@ class NestedSetFeatureContext extends FeatureContext
      *
      * @param int $targetId
      * @param int $idBefore
+     *
+     * @throws \Exception
      */
     public function iMoveNodeWithIdBeforeNodeWithId(int $targetId, int $idBefore)
     {
@@ -268,7 +271,7 @@ class NestedSetFeatureContext extends FeatureContext
     }
 
     /**
-     * @return NestedSetRepository
+     * @return NestedSetEntityRepository
      */
     private function getRepository(): NestedSetEntityRepository
     {
