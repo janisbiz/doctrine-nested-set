@@ -18,4 +18,5 @@ before_script:
 
 script:
   - vendor/bin/phpcs -p ./src --standard=PHPCompatibility,PSR2 --runtime-set testVersion 7.0
+  - vendor/bin/phpstan analyse src
   - vendor/bin/behat

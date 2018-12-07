@@ -30,7 +30,8 @@
     "symfony/var-dumper": "^3.4",
     "phpro/grumphp": "^0.14.2",
     "jakub-onderka/php-parallel-lint": "^1.0",
-    "phpmd/phpmd": "^2.6"
+    "phpmd/phpmd": "^2.6",
+    "phpstan/phpstan": "^0.9.2"
   },
   "autoload": {
     "psr-4": {
