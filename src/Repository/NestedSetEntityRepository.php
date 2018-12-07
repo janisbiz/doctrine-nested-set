@@ -18,7 +18,7 @@ class NestedSetEntityRepository extends EntityRepository
      * @param NestedSetEntityInterface $node
      *
      * @return NestedSetEntityInterface
-     * @throws NestedSetException
+     * @throws NestedSetException|\Exception
      */
     public function persistRootNode(NestedSetEntityInterface $node)
     {
@@ -125,7 +125,7 @@ class NestedSetEntityRepository extends EntityRepository
      * @param NestedSetEntityInterface $after
      *
      * @return NestedSetEntityInterface
-     * @throws NestedSetException
+     * @throws NestedSetException|\Exception
      */
     public function moveNodeAfter(NestedSetEntityInterface $node, NestedSetEntityInterface $after)
     {
@@ -171,7 +171,7 @@ class NestedSetEntityRepository extends EntityRepository
      * @param NestedSetEntityInterface $before
      *
      * @return NestedSetEntityInterface
-     * @throws NestedSetException
+     * @throws NestedSetException|\Exception
      */
     public function moveNodeBefore(NestedSetEntityInterface $node, NestedSetEntityInterface $before)
     {
@@ -216,6 +216,7 @@ class NestedSetEntityRepository extends EntityRepository
      * @param NestedSetEntityInterface $node
      *
      * @return bool
+     * @throws \Exception
      */
     public function removeNode(NestedSetEntityInterface $node)
     {
@@ -347,6 +348,7 @@ class NestedSetEntityRepository extends EntityRepository
      * @param NestedSetEntityInterface $node
      *
      * @return NestedSetEntityRepository
+     * @throws NestedSetException
      */
     private function reloadNodeNestedSetData(NestedSetEntityInterface &$node)
     {
@@ -362,6 +364,7 @@ class NestedSetEntityRepository extends EntityRepository
      * @param NestedSetEntityInterface $node
      *
      * @return NestedSetEntityInterface
+     * @throws \Exception
      */
     private function insertNode(NestedSetEntityInterface $node)
     {

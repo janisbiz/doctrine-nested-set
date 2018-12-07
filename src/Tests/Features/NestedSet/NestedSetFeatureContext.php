@@ -6,7 +6,6 @@ use Behat\Gherkin\Node\TableNode;
 use Janisbiz\DoctrineNestedSet\Repository\NestedSetEntityRepository;
 use Janisbiz\DoctrineNestedSet\Tests\Features\Bootstrap\Entity\NestedSet;
 use Janisbiz\DoctrineNestedSet\Tests\Features\Bootstrap\FeatureContext;
-use Janisbiz\DoctrineNestedSet\Tests\Features\Bootstrap\Repository\NestedSetRepository;
 
 class NestedSetFeatureContext extends FeatureContext
 {
@@ -274,7 +273,7 @@ class NestedSetFeatureContext extends FeatureContext
     }
 
     /**
-     * @return NestedSetRepository
+     * @return NestedSetEntityRepository
      */
     private function getRepository()
     {
